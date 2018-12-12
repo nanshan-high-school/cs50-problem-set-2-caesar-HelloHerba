@@ -17,14 +17,19 @@ int main() {
       cout << password[j] ;
       continue ;
     }//如果輸入的內容為符號,則不做任何改動
-    password[j] = password[j] + number_add ;//將非符號的字元遞移
-    if(password[j]-number_add<='Z'&& password[j]-number_add>='A'&&password[j]>'Z')
+    if(password[j]<='Z'&& password[j]>='A'&&password[j]+number_add>'Z')
     { //原本字元為A~Z的,經遞移後超過Z,則減去26,回到A~Z的範圍(一定範圍內)
       password[j]=password[j]-26;
-    }else if(password[j]-number_add>='a'&&password[j]-number_add<='z'&&password[j]>122)
-          {//原本字元為a~z的,經遞移後超過z,則減去26,回到a~z的範圍(一定範圍內)
-            password[j]=password[j]-26;      
-          }
+    }else if(password[j]>='a'&&password[j]<='z'&& password[j]+number_add>'z'||password[j]+number_add<0)
+      {
+        if(password[j]+number_add<0 && password[j]+number_add>127)
+        {
+          password[j]=password[j]-26;
+        }
+        //原本字元為a~z的,經遞移後超過z,則減去26,回到a~z的範圍(一定範圍內)
+        password[j]=password[j]-26;      
+      }
+    password[j]=password[j]+number_add;
     cout << password[j] ;
   }
 }
