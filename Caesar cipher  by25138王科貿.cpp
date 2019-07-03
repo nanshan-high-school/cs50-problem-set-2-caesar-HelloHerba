@@ -1,14 +1,13 @@
 #include <iostream>
 using namespace std;
 int main() {
-  int num ;
+  int num , number_add;
   string password ;
   cout << "請輸入一個密碼:" ;
   cin >> password;
   int i=password.length() ;//表示i等於陣列總使用位數
   cout << "\n請輸入要遞移的數字:" ;
-  cin >> num;
-  const int number_add = num ;
+  cin >> number_add;
   cout<<"\n加密後的結果為:" ;
   for (int j=0 ; j<i ; j++)
   {
@@ -23,6 +22,7 @@ int main() {
     }else if(password[j]>='a'&&password[j]<='z'&& password[j]+number_add>'z'||password[j]+number_add<0)
       {
         if(password[j]+number_add<0 && password[j]+number_add>127)
+        //為避免溢位，先判斷遞移後會不會溢位(ASCII範圍0~127)
         {
           password[j]=password[j]-26;
         }
